@@ -25,9 +25,9 @@ public class DatabaseHandler {
 
     public ResultSet getUsers() {
         String getUser="SELECT * FROM users";
-        PreparedStatement prSt= null;
+
         try {
-            prSt = getDBConnection().prepareStatement(getUser);
+            PreparedStatement prSt=getDBConnection().prepareStatement(getUser);
             resSet= prSt.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -38,9 +38,8 @@ public class DatabaseHandler {
 
     public void insertUser(User user) {
         String insertUser="INSERT INTO users (Name, Surname, Patronymic) VALUES (?, ?, ?)";
-        PreparedStatement prSt=null;
         try {
-            prSt=getDBConnection().prepareStatement(insertUser);
+            PreparedStatement prSt=getDBConnection().prepareStatement(insertUser);
             prSt.setString(1, user.getName());
             prSt.setString(2, user.getSurname());
             prSt.setString(3, user.getPatronymic());
